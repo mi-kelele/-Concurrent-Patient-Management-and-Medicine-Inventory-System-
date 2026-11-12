@@ -3,22 +3,14 @@ package Problem2;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
-/**
- * ============================================================================
- * DOCTOR WORKER (Thread / Runnable)
- * ============================================================================
- * Responsibilities:
- * 1. Conducts patient consultations and reviews records.
- * 2. Uses the hospital's limited specialized MRI/Exam suites controlled by a Semaphore (Task e).
- * 3. Adds diagnosis notes and treatment plans to patient records (Task g).
- */
-public class Doctor implements Runnable { // run() -> submitted to a thread. .submit(Doctor)
+
+public class Doctor implements Runnable { 
 
     private final String name;
     private final HospitalSystem hospital;
     private final int startPatientId; // 1
     private final int endPatientId; //20
-    private final Random random = new Random(); // random.nextInt(20) 0-19. 
+    private final Random random = new Random(); 
 
     public Doctor(String name, HospitalSystem hospital, int startPatientId, int endPatientId) {
         this.name = name;
@@ -39,7 +31,7 @@ public class Doctor implements Runnable { // run() -> submitted to a thread. .su
             if (patient == null) continue;
 
             // Scenario: Certain patients require the specialized MRI / Diagnostic Scanner
-            if (pId % 5 == 0) { // simulation. 
+            if (pId % 5 == 0) { 
                 System.out.println("[SEMAPHORE WAITING] " + name + " requesting access to Specialized MRI Suite for Patient #" + pId);
                 try {
                     // Acquire permit from Semaphore (blocks if both suites are currently occupied!)
@@ -52,7 +44,7 @@ public class Doctor implements Runnable { // run() -> submitted to a thread. .su
 
                     patient.addClinicalNote(name, "MRI Scan completed: No acute abnormalities detected.");
 
-                } catch (InterruptedException e) { // happens all the time. 
+                } catch (InterruptedException e) { 
                     Thread.currentThread().interrupt();
                     break;
                 } finally {
@@ -67,7 +59,7 @@ public class Doctor implements Runnable { // run() -> submitted to a thread. .su
             }
 
             try {
-                Thread.sleep(15 + random.nextInt(25)); // thread, 15 ms. 
+                Thread.sleep(15 + random.nextInt(25)); 
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;

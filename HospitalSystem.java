@@ -7,22 +7,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
 
 /**
- * ============================================================================
- * HOSPITAL SYSTEM (SHARED CENTRAL REPOSITORY)
- * ============================================================================
- * Holds all shared resources accessed concurrently by all healthcare workers:
- *
- * 1. 100 Registered Patients (Task c: Shared Patient Record Repository)
- *    Using ConcurrentHashMap so multiple threads can read/search patients safely.
- *
- * 2. Shared Medicine Inventory with 50 initial doses (Task d).
- *
- * 3. BlockingQueue for Laboratory Requests (Task e & f):
- *    Acts like a conveyor belt. Nurses put requests on it; Techs take them off.
- *
- * 4. Semaphore for Limited Hospital Resources (Task e):
- *    The hospital has only 2 specialized MRI/Scanning suites.
- *    A Semaphore with 2 permits ensures at most 2 workers use the rooms at once.
+  Holds all shared resources accessed concurrently by all healthcare workers:
+  1. 100 Registered Patients (Task c: Shared Patient Record Repository)
+    Using ConcurrentHashMap so multiple threads can read/search patients safely.
+ 
+  2. Shared Medicine Inventory with 50 initial doses (Task d).
+ 
+  3. BlockingQueue for Laboratory Requests (Task e & f):
+     Acts like a conveyor belt. Nurses put requests on it; Techs take them off.
+ 
+  4. Semaphore for Limited Hospital Resources (Task e):
+     The hospital has only 2 specialized MRI/Scanning suites.
+     A Semaphore with 2 permits ensures at most 2 workers use the rooms at once.
  */
 public class HospitalSystem {
 
@@ -49,11 +45,11 @@ public class HospitalSystem {
     }
 
     public Patient getPatient(int id) {
-        return patientRepository.get(id); // id: details. 
+        return patientRepository.get(id); 
     }
 
     public int getTotalPatients() {
-        return patientRepository.size(); // number. 
+        return patientRepository.size(); 
     }
 
     public MedicineInventory getMedicineInventory() {

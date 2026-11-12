@@ -7,17 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ============================================================================
- * HOSPITAL SIMULATION MAIN RUNNER
- * ============================================================================
- * Sets up and runs the entire Problem 2 Concurrent Hospital System:
- * - 100 registered patients.
- * - 5 doctors.
- * - 10 nurses.
- * - 3 laboratory technicians.
- * - 2 pharmacists.
- * - Shared medicine inventory with 50 doses.
- *
  * Demonstrates:
  * - Task (b): Implementing separate threads for healthcare workers.
  * - Task (c): Shared patient repository.
@@ -115,7 +104,7 @@ public class HospitalSimulation {
             for (String note : p.getClinicalNotes()) {
                 System.out.println("   -> " + note);
             }
-        } // add
+        } 
 
         System.out.println("\n======================================================================");
         System.out.println("CONCURRENCY REQUIREMENTS VERIFICATION:");

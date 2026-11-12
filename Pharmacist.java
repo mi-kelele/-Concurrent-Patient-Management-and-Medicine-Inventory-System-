@@ -2,16 +2,6 @@ package Problem2;
 
 import java.util.Random;
 
-/**
- * ============================================================================
- * PHARMACIST WORKER (Thread / Runnable)
- * ============================================================================
- * Responsibilities (Task d):
- * 1. Receives medication orders for patients.
- * 2. Dispenses doses from the shared MedicineInventory.
- * 3. Safely handles inventory limits without letting stock become negative,
- *    even when multiple pharmacists process orders at the exact same moment.
- */
 public class Pharmacist implements Runnable { // .sub 
 
     private final String name;

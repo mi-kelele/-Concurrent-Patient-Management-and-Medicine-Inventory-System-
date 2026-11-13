@@ -3,6 +3,13 @@ package Problem2;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+/*
+Responsibilities:
+  1. Conducts patient consultations and reviews records.
+  2. Uses the hospital's limited specialized MRI/Exam suites controlled by a Semaphore (Task e).
+  3. Adds diagnosis notes and treatment plans to patient records (Task g).
+ */
+
 
 public class Doctor implements Runnable { 
 

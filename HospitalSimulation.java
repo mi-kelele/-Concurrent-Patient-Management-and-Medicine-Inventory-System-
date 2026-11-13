@@ -7,13 +7,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Demonstrates:
- * - Task (b): Implementing separate threads for healthcare workers.
- * - Task (c): Shared patient repository.
- * - Task (d): Medicine dispensing preventing negative inventory.
- * - Task (e): synchronized, ReentrantLock, ExecutorService, BlockingQueue, Semaphore.
- * - Task (f): Laboratory request queue (Nurses produce, Techs consume, Doctors retrieve).
- * - Task (g): Patient record consistency.
+  Demonstrates:
+  - Task (b): Implementing separate threads for healthcare workers.
+  - Task (c): Shared patient repository.
+  - Task (d): Medicine dispensing preventing negative inventory.
+  - Task (e): synchronized, ReentrantLock, ExecutorService, BlockingQueue, Semaphore.
+  - Task (f): Laboratory request queue (Nurses produce, Techs consume, Doctors retrieve).
+  - Task (g): Patient record consistency.
  */
 public class HospitalSimulation {
 

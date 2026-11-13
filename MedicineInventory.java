@@ -6,17 +6,14 @@ import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * ============================================================================
- * MEDICINE INVENTORY CLASS
- * ============================================================================
- * Represents the hospital's central medicine stock.
- *
- * Requirements:
- * - Shared stock initialized with 50 doses of medication.
- * - Task (d): Implement a medicine dispensing method that prevents the
- *   inventory from becoming negative when multiple pharmacists dispense
- *   medication simultaneously.
- * - Task (e): Uses ReentrantLock to guard stock modifications.
+  Represents the hospital's central medicine stock.
+ 
+  Requirements:
+  - Shared stock initialized with 50 doses of medication.
+  - Task (d): Implement a medicine dispensing method that prevents the
+    inventory from becoming negative when multiple pharmacists dispense
+    medication simultaneously.
+  - Task (e): Uses ReentrantLock to guard stock modifications.
  */
 public class MedicineInventory {
 
@@ -37,14 +34,12 @@ public class MedicineInventory {
         log("Inventory initialized: " + initialDoses + " doses of " + medicineName + " available.");
     }
 
-    // ------------------------------------------------------------------------
-    // TASK (d): SAFE MEDICINE DISPENSING
-    // ------------------------------------------------------------------------
-    /**
-     * Attempts to dispense 'requestedDoses' to a patient.
-     * Guaranteed to NEVER allow availableDoses to drop below 0.
-     *
-     * @return true if successfully dispensed, false if out of stock
+  
+    /*
+      Attempts to dispense 'requestedDoses' to a patient.
+      Guaranteed to NEVER allow availableDoses to drop below 0.
+     
+      @return true if successfully dispensed, false if out of stock
      */
     public boolean dispense(String pharmacistName, int patientId, int requestedDoses) {
         lock.lock(); // Step 1: Acquire exclusive lock. Only 1 pharmacist enters here.
@@ -74,9 +69,8 @@ public class MedicineInventory {
         }
     }
 
-    // ------------------------------------------------------------------------
     // RESTOCK (if new shipment arrives)
-    // ------------------------------------------------------------------------
+   
     public void restock(String supplier, int additionalDoses) {
         lock.lock();
         try {

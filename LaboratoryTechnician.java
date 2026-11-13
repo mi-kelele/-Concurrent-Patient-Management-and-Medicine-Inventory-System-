@@ -3,13 +3,10 @@ package Problem2;
 import java.util.concurrent.TimeUnit;
 
 /**
- * ============================================================================
- * LABORATORY TECHNICIAN WORKER (Thread / Runnable)
- * ============================================================================
- * Responsibilities (Task f):
- * 1. Pulls diagnostic requests from the shared BlockingQueue (Consumer pattern).
- * 2. Processes tests concurrently with other technicians.
- * 3. Records completed test findings back into the patient's record.
+  Responsibilities (Task f):
+  1. Pulls diagnostic requests from the shared BlockingQueue (Consumer pattern).
+  2. Processes tests concurrently with other technicians.
+  3. Records completed test findings back into the patient's record.
  */
 public class LaboratoryTechnician implements Runnable {
 

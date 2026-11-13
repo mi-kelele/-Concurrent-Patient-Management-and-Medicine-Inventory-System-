@@ -1,11 +1,6 @@
 package Problem2;
 
 /**
- * ============================================================================
- * LAB REQUEST CLASS
- * ============================================================================
- * Represents a laboratory diagnostic request.
- *
  * Flow (Task f):
  * 1. A Nurse submits this request into the hospital's BlockingQueue.
  * 2. A Laboratory Technician picks it up from the queue and processes it.

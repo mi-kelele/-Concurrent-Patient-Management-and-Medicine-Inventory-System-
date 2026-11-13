@@ -1,10 +1,10 @@
 package Problem2;
 
 /**
- * Flow (Task f):
- * 1. A Nurse submits this request into the hospital's BlockingQueue.
- * 2. A Laboratory Technician picks it up from the queue and processes it.
- * 3. A Doctor retrieves the finished result and adds it to the patient record.
+  Flow (Task f):
+  1. A Nurse submits this request into the hospital's BlockingQueue.
+  2. A Laboratory Technician picks it up from the queue and processes it.
+  3. A Doctor retrieves the finished result and adds it to the patient record.
  */
 public class LabRequest {
 

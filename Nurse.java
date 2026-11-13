@@ -3,12 +3,10 @@ package Problem2;
 import java.util.Random;
 
 /**
- * ============================================================================
- * NURSE WORKER (Thread / Runnable)
- * ============================================================================
- * Responsibilities:
- * 1. Checks on patients and updates their vital signs.
- * 2. Submits laboratory test requests into the shared BlockingQueue.
+ 
+  Responsibilities:
+ 1. Checks on patients and updates their vital signs.
+ 2. Submits laboratory test requests into the shared BlockingQueue.
  */
 public class Nurse implements Runnable { // run() pool.submit(Nurse)
 

@@ -43,6 +43,11 @@ public class Nurse implements Runnable { // run() pool.submit(Nurse)
             if (pId % 3 == 0) {
                 LabRequest request = new LabRequest(pId * 10, pId, "Complete Blood Count (CBC)", name);
                 try {
+                    hospital.getLabRequestDAO().insert(request); // persist as PENDING before queuing
+                } catch (DatabaseException e) {
+                    System.err.println("[DB ERROR] " + name + ": " + e.getMessage());
+                }
+                try {
                     // .put() blocks if the queue is full (Producer pattern)
                     hospital.getLabQueue().put(request);
                     System.out.println("[LAB SUBMITTED] " + name + " queued lab test for Patient #" + pId);

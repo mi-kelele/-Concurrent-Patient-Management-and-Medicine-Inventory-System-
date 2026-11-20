@@ -19,6 +19,7 @@ public class Patient {
     // Unique ID for the patient (e.g. 1 to 100)
     private final int id; // constant. 
     private final String name;
+    private final PatientDAO dao; // JDBC persistence
 
     // Vital signs recorded by nurses
     private String bloodPressure;
@@ -28,9 +29,10 @@ public class Patient {
     // Medical history & lab results added by doctors and lab technicians
     private final List<String> clinicalNotes = Collections.synchronizedList(new ArrayList<>());
 
-    public Patient(int id, String name) {
+    public Patient(int id, String name, PatientDAO dao) {
         this.id = id;
         this.name = name;
+        this.dao = dao;
         this.bloodPressure = "120/80";
         this.temperature = 36.8;
         this.heartRate = 72;
@@ -44,6 +46,21 @@ public class Patient {
         return name;
     }
 
+    public synchronized String getBloodPressure() { return bloodPressure; }
+
+    public synchronized double getTemperature() { return temperature; }
+
+    public synchronized int getHeartRate() { return heartRate; }
+
+    // A DB failure must not kill a worker thread (exceptions inside submit() are silently swallowed)
+    private void persist(Runnable dbWork) {
+        try {
+            dbWork.run();
+        } catch (DatabaseException e) {
+            System.err.println("[DB ERROR] Patient #" + id + ": " + e.getMessage());
+        }
+    }
+
     
     // NURSE OPERATION: Update Vital Signs
     // 'synchronized' ensures two nurses don't write conflicting vitals at once
@@ -54,6 +71,11 @@ public class Patient {
         this.heartRate = hr;
         clinicalNotes.add("[VITALS UPDATED by " + nurseName + "] BP: " + bp
                 + ", Temp: " + temp + "°C, HR: " + hr + " bpm");
+        persist(() -> {
+            dao.updateVitals(id, bp, temp, hr);
+            dao.addNote(id, nurseName, "[VITALS UPDATED] BP: " + bp
+                    + ", Temp: " + temp + "°C, HR: " + hr + " bpm");
+        });
     }
 
    
@@ -61,6 +83,7 @@ public class Patient {
     
     public synchronized void addClinicalNote(String author, String note) { // setter. 
         clinicalNotes.add("[" + author + "] " + note);
+        persist(() -> dao.addNote(id, author, note));
     }
 
    

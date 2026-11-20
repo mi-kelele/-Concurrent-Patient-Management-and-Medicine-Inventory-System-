@@ -106,6 +106,8 @@ public class HospitalSimulation {
             }
         } 
 
+        hospital.printDatabaseAudit(); // JDBC: compare memory vs database
+
         System.out.println("\n======================================================================");
         System.out.println("CONCURRENCY REQUIREMENTS VERIFICATION:");
         System.out.println(" [✓] Task (a): All 6 required Java classes implemented");
@@ -117,6 +119,7 @@ public class HospitalSimulation {
         System.out.println(" [✓] Task (f): Lab Queue producer-consumer pipeline executed without loss");
         System.out.println(" [✓] Task (g): Patient records remained 100% consistent throughout shift");
         System.out.println("======================================================================");
+
+        Database.shutdown(); // close the connection pool
     }
 }
-

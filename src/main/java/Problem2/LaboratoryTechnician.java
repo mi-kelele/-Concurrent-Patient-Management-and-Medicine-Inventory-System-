@@ -39,6 +39,11 @@ public class LaboratoryTechnician implements Runnable {
 
                     String result = "Hemoglobin 14.2 g/dL, WBC 6,500/mcL (Normal)";
                     request.completeTest(name, result);
+                    try {
+                        hospital.getLabRequestDAO().complete(request.getRequestId(), name, result);
+                    } catch (DatabaseException e) {
+                        System.err.println("[DB ERROR] " + name + ": " + e.getMessage());
+                    }
 
                     // Record result in patient record
                     Patient patient = hospital.getPatient(request.getPatientId());
